@@ -1,4 +1,4 @@
-//Система отлова урона
+//РЎРёСЃС‚РµРјР° РѕС‚Р»РѕРІР° СѓСЂРѕРЅР°
 #guard dmgs
 scope dmgs init on
 {
@@ -87,6 +87,6 @@ scope idmgs init on
 		tra(udea)
 		svi(hid(gtr(dmgs)),"flch",10)
 		svs(hid(gtr(dmgs)),"func",scn("dmgf"))
-		//msg("иниц. отлова")
+		//msg("ГЁГ­ГЁГ¶. Г®ГІГ«Г®ГўГ ")
 	}
 }
