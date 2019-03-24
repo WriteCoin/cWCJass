@@ -410,10 +410,10 @@ library global
         flch(h) = FlushChildHashtable(global_hash,h)
         
         //widget
-        tmpwt=global_TempWidg
-		tmpwt1=tmpwt##1
-		tmpwt2=tmpwt##2
-		tmpwt(i)=tmpwt##A[i]
+        tmwt=global_TempWidg
+		tmwt1=tmwt##1
+		tmwt2=tmwt##2
+		tmwt(i)=tmwt##A[i]
         
 		trw = GetTriggerWidget()
 		wx(w) = GetWidgetX(w)
@@ -544,7 +544,13 @@ library global
 		aul(u,v) = sul(u,hp(u)+v)
 		sum(u,v) = sust(u,ustm,v)
 		aum(u,v) = sum(u,mp(u)+v)
-		usc(u,a,b,c) = SetUnitScale(u,a,b,c)
+		usc(u,a,b,c) = 
+		{
+			SetUnitScale(u,a,b,c)
+			svr(hid(u),"scaleX",a)
+			svr(hid(u),"scaleY",b)
+			svr(hid(u),"scaleZ",c)
+		}
 		usc(u,sc) = usc(u,sc,sc,sc)
 		uaa(u,ab) = UnitAddAbility(u,ab)
 		sua(u,ab,l) = SetUnitAbilityLevel(u,ab,l)
@@ -804,7 +810,7 @@ library global
 		plab(pl,ab,b) = 
 		{
 			SetPlayerAbilityAvailable(pl,ab,b)
-			svb(hid(pl),"abisav",b)
+			svb(hid(pl),"abisav"+i2s(ab),b)
 		}
 		plab(ab,b) = plab(locpl,ab,b)
 		plab(ab) = plab(ab,false)
@@ -1401,8 +1407,8 @@ library global
 
 	pb int GetHashIntArrayIndex(int h,int index,string str,int val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if ldi(h,str+i2s(tmi))==val { return tmi; break } }
+		int i=0
+		whilenot ++i>index { if ldi(h,str+i2s(i))==val { return i; break } }
 		return 0
 	}
 	
@@ -1410,8 +1416,8 @@ library global
 	
 	pb int GetHashInt1ArrayIndex(int h,int index,string str,int i,int val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if ldi(h,str+i2s(i)+i2s(tmi))==val { return tmi; break } }
+		int j=0
+		whilenot ++j>index { if ldi(h,str+i2s(i)+i2s(j))==val { return j; break } }
 		return 0
 	}
 	
@@ -1419,8 +1425,8 @@ library global
 	
 	pb int GetHashInt2ArrayIndex(int h,int index,string str,int i,int val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if ldi(h,str+i2s(tmi)+i2s(i))==val { return tmi; break } }
+		int j=0
+		whilenot ++j>index { if ldi(h,str+i2s(j)+i2s(i))==val { return j; break } }
 		return 0
 	}
 	
@@ -1428,8 +1434,8 @@ library global
 	
 	pb int GetHashRealArrayIndex(int h,int index,string str,real val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if ldr(h,str+i2s(tmi))==val { return tmi; break } }
+		int i=0
+		whilenot ++i>index { if ldr(h,str+i2s(i))==val { return i; break } }
 		return 0
 	}
 	
@@ -1437,8 +1443,8 @@ library global
 	
 	pb int GetHashReal1ArrayIndex(int h,int index,string str,int i,real val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if ldr(h,str+i2s(i)+i2s(tmi))==val { return tmi; break } }
+		int j=0
+		whilenot ++j>index { if ldr(h,str+i2s(i)+i2s(j))==val { return j; break } }
 		return 0
 	}
 	
@@ -1446,8 +1452,8 @@ library global
 	
 	pb int GetHashReal2ArrayIndex(int h,int index,string str,int i,real val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if ldr(h,str+i2s(tmi)+i2s(i))==val { return tmi; break } }
+		int j=0
+		whilenot ++j>index { if ldr(h,str+i2s(j)+i2s(i))==val { return j; break } }
 		return 0
 	}
 	
@@ -1455,8 +1461,8 @@ library global
 	
 	pb int GetHashStrArrayIndex(int h,int index,string str,string val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if lds(h,str+i2s(tmi))==val { return tmi; break } }
+		int i=0
+		whilenot ++i>index { if lds(h,str+i2s(i))==val { return i; break } }
 		return 0
 	}
 	
@@ -1464,8 +1470,8 @@ library global
 	
 	pb int GetHashStr1ArrayIndex(int h,int index,string str,int i,string val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if lds(h,str+i2s(i)+i2s(tmi))==val { return tmi; break } }
+		int j=0
+		whilenot ++j>index { if lds(h,str+i2s(i)+i2s(j))==val { return j; break } }
 		return 0
 	}
 	
@@ -1473,8 +1479,8 @@ library global
 	
 	pb int GetHashStr2ArrayIndex(int h,int index,string str,int i,string val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if lds(h,str+i2s(tmi)+i2s(i))==val { return tmi; break } }
+		int j=0
+		whilenot ++j>index { if lds(h,str+i2s(j)+i2s(i))==val { return j; break } }
 		return 0
 	}
 	
@@ -1482,8 +1488,8 @@ library global
 	
 	pb int GetHashBoolArrayIndex(int h,int index,string str,bool val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if ldb(h,str+i2s(tmi))==val { return tmi; break } }
+		int i=0
+		whilenot ++i>index { if ldb(h,str+i2s(i))==val { return i; break } }
 		return 0
 	}
 	
@@ -1491,8 +1497,8 @@ library global
 	
 	pb int GetHashBool1ArrayIndex(int h,int index,string str,int i,bool val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if ldb(h,str+i2s(i)+i2s(tmi))==val { return tmi; break } }
+		int j=0
+		whilenot ++j>index { if ldb(h,str+i2s(i)+i2s(j))==val { return j; break } }
 		return 0
 	}
 	
@@ -1500,8 +1506,8 @@ library global
 	
 	pb int GetHashBool2ArrayIndex(int h,int index,string str,int i,bool val)
 	{
-		tmi=0
-		whilenot ++tmi>index { if ldb(h,str+i2s(tmi)+i2s(i))==val { return tmi; break } }
+		int j=0
+		whilenot ++j>index { if ldb(h,str+i2s(j)+i2s(i))==val { return j; break } }
 		return 0
 	}
 	
@@ -1627,6 +1633,9 @@ library global
 				{
 					return i
 					break
+				//else
+				//	msg("i"+i2s(i))
+				//	msg("j"+i2s(j))
 				}
 				j++
 			}
